@@ -1,4 +1,4 @@
-package com.collegeadmission.connection;
+package com.collegeadmission.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
