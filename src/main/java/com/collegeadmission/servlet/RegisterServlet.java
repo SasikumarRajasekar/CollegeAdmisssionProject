@@ -1,7 +1,8 @@
 package com.collegeadmission.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 		doPost(request,response);
 	}
 
@@ -41,20 +42,33 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
+		//doGet(request,response);
 		String username=request.getParameter("username");
 		String email=request.getParameter("email");
 		long mobileno=Long.parseLong(request.getParameter("mobileno"));
 		String password=request.getParameter("password");
-//		UserDetails user=new UserDetails(username,email,mobileno,password);
-//		UserDaoImpl userdao=new UserDaoImpl();
+		UserDetails user=new UserDetails(username,email,mobileno,password);
+		UserDaoImpl user1=new UserDaoImpl();
+		
 //		user=userdao.validateUser(username,email,mobileno, password);
-		PrintWriter rw=response.getWriter();
-		rw.write("UserName: " +username);
-		rw.write("Email:"+email);
-		rw.write("Mobile Number: " + mobileno);
-		rw.write("Password:"+password);
+//		PrintWriter rw=response.getWriter();
+//		rw.write("UserName: " +username);
+//		rw.write("Email:"+email);
+//		rw.write("Mobile Number: " + mobileno);
+//		rw.write("Password:"+password);
+		try {
+			boolean flag= user1.userDetails(user);
+			if(flag)
+			{
+			response.sendRedirect("UserLogin.jsp");
+
+			}
+			} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+
 	}
 
 }

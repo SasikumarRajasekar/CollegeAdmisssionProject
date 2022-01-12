@@ -79,16 +79,19 @@ package com.collegeadmission.model;
 	this.mobileNumber = mobileNumber;
 	this.userPassword = userPassword;
 }
-		public UserDetails(int userId2) {
-			// TODO Auto-generated constructor stub
-			this.userId=userId2;
-		}
-		public int getUserId() {
-			return userId;
-		}
-		public void setUserId(int userId) {
+		
+		public UserDetails(String userName, String email, long mobileNumber, String userPassword, int userId) {
+			super();
+			this.userName = userName;
+			this.email = email;
+			this.mobileNumber = mobileNumber;
+			this.userPassword = userPassword;
 			this.userId = userId;
 		}
-}
+		public int getUserId() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		}
 
 

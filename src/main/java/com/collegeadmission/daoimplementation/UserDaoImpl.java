@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.collegeadmission.connection.*;
 import com.collegeadmission.model.UserDetails;
-import com.collegeadmission.util.*;
 
 
 	public class UserDaoImpl {
 		
-		public void userDetails(UserDetails userdetails) throws ClassNotFoundException, SQLException {
+		public boolean userDetails(UserDetails userdetails) throws ClassNotFoundException, SQLException {
 			System.out.println("dao");
 			String userQuery = "insert into user_details(User_Name,Email,Mobile_Number,User_Password) values(?,?,?,?)";
 
@@ -33,8 +33,47 @@ import com.collegeadmission.util.*;
 				System.out.println("Registered Successfully");
 				pstmt.close();
 				con.close();
+				return false;
 		    }
-				
+		
+		
+		public void update (UserDetails userdetails) throws ClassNotFoundException, SQLException {
+	    	
+	    	String update="update user_details set User_Name=?,Email=?,Mobile_Number=?,User_Password=? where user_id=?";
+	    	
+	    	Connection con=ConnectionUtil.getDBConnect();
+			PreparedStatement ps=con.prepareStatement(update);			
+			ps.setString(1,userdetails.getUserName());
+			ps.setString(2, userdetails.getEmail());
+			ps.setLong(3,userdetails.getMobileNumber());
+			ps.setString(4, userdetails.getUserPassword());
+			ps.setInt(5, userdetails.getUserId());
+			
+			int result=ps.executeUpdate();
+			if(result > 0) {
+			System.out.println(result+ " is updated !!");
+			}
+			else {
+				System.out.println("not updated");
+			}
+			ps.close();
+			con.close();
+	    }
+		
+		public void deleteUser (UserDetails userdetails) throws ClassNotFoundException, SQLException {
+			
+			String del="delete from user_details where user_id=?";
+			
+			Connection con=ConnectionUtil.getDBConnect();
+			PreparedStatement ps=con.prepareStatement(del);
+			
+			ps.setInt(1,userdetails.getUserId());
+			int res=ps.executeUpdate();
+			System.out.println(res + "is deleted");
+			ps.close();
+			con.close();		
+		}
+		
 				
 		public List<UserDetails> showAllUsers() throws ClassNotFoundException, SQLException
 	    {

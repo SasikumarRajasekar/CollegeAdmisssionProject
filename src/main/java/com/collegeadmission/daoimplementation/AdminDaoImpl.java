@@ -6,12 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.collegeadmission.dao.AdminDao;
+import com.collegeadmission.connection.ConnectionUtil;
 import com.collegeadmission.model.Admin;
 import com.collegeadmission.model.UserDetails;
-import com.collegeadmission.util.ConnectionUtil;
 
-public class AdminDaoImpl implements AdminDao{
+public class AdminDaoImpl {
 	
 	public void adminDetails(Admin admin) throws SQLException, ClassNotFoundException {
 	
@@ -34,39 +33,32 @@ public class AdminDaoImpl implements AdminDao{
 		con.close();
     }
 	
-	public String loginAdmin(String AdminEmail,String AdminPassword)
+	public Boolean loginAdmin(String AdminEmail,String AdminPassword) throws ClassNotFoundException, SQLException
 	{
-		String loginQuery="select * from admin_details where Admin_Email'"+AdminEmail+"' and  Admin_Password='"+AdminPassword+"'" ;
 		
-		Admin admin=null;	
 		
-		try {
-			Connection con=ConnectionUtil.getDBConnect();
-			Statement stmt=con.createStatement();
-			ResultSet rs=stmt.executeQuery(loginQuery);
+		 Connection con = ConnectionUtil.getDBConnect();
 			
-			if(rs.next())
-			{
-			
-			return rs.getString(2);
-			}
-			else
-			{
-				System.out.println("adminemail and password not valid");
-			}
-			
-		} 
-		
-		catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-			
-		
-	}
+		 String loginQuery="select * from admin_details where Admin_Email'"+AdminEmail+"' and  Admin_Password='"+AdminPassword+"'" ;
+				
+		    PreparedStatement stmt = con.prepareStatement(loginQuery);
+		    
+		    System.out.println("Registered ");
+				
+		    stmt.setString(1, AdminEmail);
+			stmt.setString(2, AdminPassword);
+				
+			int i = stmt.executeUpdate();
+				
+if(i>0)
+{
+				return true;
 
-	
+				//System.out.println("welcome "+rs.getString("first_name") );
+				}else {
+						return false;
+				}
+	}
 	}
 
 
