@@ -1,4 +1,4 @@
-package com.collegeadmission.daoimplementation;
+package com.collegeadmission.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

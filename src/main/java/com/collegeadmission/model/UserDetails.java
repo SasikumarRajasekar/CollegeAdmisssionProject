@@ -3,13 +3,21 @@ package com.collegeadmission.model;
 
 	import java.util.Objects;
 
+//import com.collegeadmission.daoimplementation.UserDaoImpl;
+
 	public class UserDetails {
 		
 		private int userId;
-	    private String userName;
+		private String userName;
 	    private String email;
 	    private long mobileNumber;
 	    private String userPassword;
+	    public int getUserId() {
+			return userId;
+		}
+		public void setUserId(int userId) {
+			this.userId = userId;
+		}
 		public String getUserName() {
 			return userName;
 		}
@@ -80,18 +88,7 @@ package com.collegeadmission.model;
 	this.userPassword = userPassword;
 }
 		
-		public UserDetails(String userName, String email, long mobileNumber, String userPassword, int userId) {
-			super();
-			this.userName = userName;
-			this.email = email;
-			this.mobileNumber = mobileNumber;
-			this.userPassword = userPassword;
-			this.userId = userId;
-		}
-		public int getUserId() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
+		
 		}
 
 

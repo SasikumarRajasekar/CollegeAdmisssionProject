@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="UpdateApplicationServlet" method= "post">
+<form action="UpdateApplication" method= "post">
 <label>Enter the- student name</label>
 <input type="text" name="studName" required>
 <label>Enter the Father Name</label>

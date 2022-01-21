@@ -1,6 +1,6 @@
 <%@page import="com.collegeadmission.model.UserDetails"%>
 <%@page import="java.util.List"%>
-<%@page import="com.collegeadmission.daoimplementation.UserDaoImpl"%>
+<%@page import="com.collegeadmission.impl.UserDaoImpl"%>
 
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -26,9 +26,9 @@ List<UserDetails> userList= obj1.showAllUsers();
 <th>MailId</th>
 <th>Mobile Number</th>
 <th>User Password</th>
-
 </tr>
 </thead>
+
 <tbody>
 <%
 for(UserDetails users:userList){

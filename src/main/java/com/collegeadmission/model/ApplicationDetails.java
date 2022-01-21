@@ -10,7 +10,7 @@ public class ApplicationDetails {
     private String studentName;
     private String fatherName;
     private Date DateofBirth;
-    private int aadharNumber;
+    private long aadharNumber;
     private int sslcMark;
     private int hscMark;
     private String firstGraduate;
@@ -49,7 +49,7 @@ public class ApplicationDetails {
 	public void setDateofBirth(Date dateofBirth) {
 		DateofBirth = dateofBirth;
 	}
-	public int getAadharNumber() {
+	public long getAadharNumber() {
 		return aadharNumber;
 	}
 	public void setAadharNumber(int aadharNumber) {
@@ -160,19 +160,18 @@ public class ApplicationDetails {
 	public ApplicationDetails(int applicationId) {
 		this.applicationId = applicationId;
 	}
-	public ApplicationDetails(int userId, String studentName, String fatherName, Date dateofBirth,
-			int aadharNumber, int sslcMark, int hscMark, String firstGraduate, String address, String city,
+	public ApplicationDetails(int userId, String studentName, String fatherName, Date dt,
+			long aadharNumber, int sslcMark, int hscMark, String address, String city,
 			int pincode, String userState, String nationality) {
 		// TODO Auto-generated constructor stub
 		
 		this.userId = userId;
 		this.studentName = studentName;
 		this.fatherName = fatherName;
-		this.DateofBirth = dateofBirth;
+		this.DateofBirth = dt;
 		this.aadharNumber = aadharNumber;
 		this.sslcMark = sslcMark;
 		this.hscMark = hscMark;
-		this.firstGraduate = firstGraduate;
 		this.address = address;
 		this.city = city;
 		this.pincode = pincode;
@@ -204,8 +203,7 @@ public class ApplicationDetails {
 			String city2, int pincode2, String userState2, String nationality2, int applicationId2) {
 		// TODO Auto-generated constructor stub
 	}
-
-
+	
 	
 }
     

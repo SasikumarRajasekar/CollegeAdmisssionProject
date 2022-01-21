@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.collegeadmission.daoimplementation.AdminDaoImpl;
+import com.collegeadmission.impl.AdminDaoImpl;
 import com.collegeadmission.model.*;
 
 /**
  * Servlet implementation class AdminLoginServlet
  */
-@WebServlet("/adminlogin")
+@WebServlet("/AdminLoginServlet")
 public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,7 +41,7 @@ public class AdminLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("adminemail");
+		String email = request.getParameter("email");
 		System.out.println("cnvccvc"+email);
 		String Password = request.getParameter("adminpassword");
 		System.out.println("snvdfcgscdcghcdgdccd");
@@ -50,20 +50,21 @@ public class AdminLoginServlet extends HttpServlet {
 		
 		try {
 			Boolean Str = cpDao.loginAdmin(email, Password);
-//		HttpSession session=request.getSession();
-//			session.setAttribute("Email", email);
-
 
 			if(Str==true)
 			{
-
-			    response.sendRedirect("AdminView.jsp");
+				
+				response.getWriter().print("Login Suceessful");
+				
+			    //response.sendRedirect("AdminView.jsp");
 			   			    
 			}
 			else
 			{
-				response.sendRedirect("AdminLogin.jsp");
+				//response.sendRedirect("AdminLogin.jsp");
 				
+				response.getWriter().print("Login Unsuceessful");
+
 			}
 		} 
 		

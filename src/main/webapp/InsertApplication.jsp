@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="InsertApplication" method="post">
+<form action = "InsertApplicationServlet" method="post">
 <h1>Application Details</h1>
 <input type ="number" name = "userid" placeholder="User Id" required><br><br>
 <input type ="text" name = "studentname" placeholder = "Student Name" pattern = "[A-Za-z.,]{3,30}"  required ><br><br>

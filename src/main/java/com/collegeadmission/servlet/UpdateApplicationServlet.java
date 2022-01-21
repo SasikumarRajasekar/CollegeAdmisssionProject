@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.collegeadmission.daoimplementation.ApplicationDaoImpl;
+import com.collegeadmission.impl.ApplicationDaoImpl;
 import com.collegeadmission.model.ApplicationDetails;
 
 /**
  * Servlet implementation class UpdateApplication
  */
-@WebServlet("/UpdateApplication")
+//@WebServlet("/UpdateApplicationServlet")
 public class UpdateApplicationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -54,43 +54,6 @@ public class UpdateApplicationServlet extends HttpServlet {
 		String nationality= request.getParameter("nationality");
 		int applicationId = Integer.parseInt(request.getParameter("applicationId"));
 		
-//		ApplicationDetails applicationdetail = new ApplicationDetails();
-//		applicationdetail.setStudentName(studentName);
-//		applicationdetail.setFatherName(fatherName);
-//		applicationdetail.setSslcMark(sslcMark);
-//		applicationdetail.setHscMark(hscMark);
-//		applicationdetail.setAddress(address);
-//		applicationdetail.setCity(city);
-//		applicationdetail.setPincode(pincode);
-//		applicationdetail.setUserState(userState);
-//		applicationdetail.setNationality(nationality);
-//		applicationdetail.setApplicationId(applicationId);
-//		ApplicationDaoImpl obj =new ApplicationDaoImpl();
-//		//PrintWriter out=response.getWriter();
-//		
-//		boolean flag = false;
-//		try {
-//			flag = obj.updateApplication(applicationdetail);
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		if(flag)
-//		{
-//		
-//			 response.sendRedirect("UserView.jsp");
-//				
-//		}
-//		else
-//		{
-//			
-//			 response.sendRedirect("UserView.jsp");
-//		}
-//		
-//	}
 
 		ApplicationDetails ad = new ApplicationDetails(studentName,fatherName,sslcMark,hscMark,address,city,pincode,userState,nationality,applicationId);
 		ApplicationDaoImpl obj =new ApplicationDaoImpl();

@@ -1,4 +1,4 @@
-package com.collegeadmission.daoimplementation;
+package com.collegeadmission.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,18 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
 
-
-import com.collegeadmission.connection.ConnectionUtil;
-import com.collegeadmission.model.ApplicationDetails;
+import com.collegeadmission.connection.*;
+import com.collegeadmission.impl.*;
+import com.collegeadmission.model.*;
+import com.collegeadmission.servlet.*;
 
 
 public class ApplicationDaoImpl  {
 	
 	public void insertApplication(ApplicationDetails applicationdetails) throws ClassNotFoundException, SQLException {
 		
-		String formQuery = "insert into application_details(User_Id,Student_Name,Father_Name,Date_of_Birth,Aadhar_Number,SSLC_Mark,HSC_Mark,First_Graduate,Address,City,Pincode,User_State,Nationality) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String formQuery = "insert into application_details(User_Id,Student_Name,Father_Name,Date_of_Birth,Aadhar_Number,SSLC_Mark,HSC_Mark,Address,City,Pincode,User_State,Nationality) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		Connection con = ConnectionUtil.getDBConnect();
 		
@@ -28,15 +28,14 @@ public class ApplicationDaoImpl  {
 		pstmt.setString(3,applicationdetails.getFatherName());
 		System.out.println(applicationdetails.getDateofBirth());
 		pstmt.setDate(4, new java.sql.Date(applicationdetails.getDateofBirth().getTime()));
-		pstmt.setInt(5,applicationdetails.getAadharNumber());
+		pstmt.setInt(5,(int) applicationdetails.getAadharNumber());
 		pstmt.setInt(6,applicationdetails.getSslcMark());
 		pstmt.setInt(7,applicationdetails.getHscMark());
-		pstmt.setString(8, applicationdetails.getFirstGraduate());
-		pstmt.setString(9,applicationdetails.getAddress());
-		pstmt.setString(10,applicationdetails.getCity());
-		pstmt.setInt(11,applicationdetails.getPincode());
-		pstmt.setString(12,applicationdetails.getUserState());
-		pstmt.setString(13,applicationdetails.getNationality());
+		pstmt.setString(8,applicationdetails.getAddress());
+		pstmt.setString(9,applicationdetails.getCity());
+		pstmt.setInt(10,applicationdetails.getPincode());
+		pstmt.setString(11,applicationdetails.getUserState());
+		pstmt.setString(12,applicationdetails.getNationality());
 		
 
 			
@@ -104,7 +103,7 @@ public class ApplicationDaoImpl  {
 		Connection con=ConnectionUtil.getDBConnect();
 		PreparedStatement ps=con.prepareStatement(del);
 		
-		ps.setInt(1, ApplicationDetails.getApplicationId());
+		//ps.setInt(1, ApplicationDetails.getApplicationId());
 		int res=ps.executeUpdate();
 		if(res > 0) {
 		System.out.println(res + "is deleted");

@@ -1,7 +1,7 @@
 <html>
 <body>
 <h2>User Login</h2>
-<form action="userlogin">
+<form action="UserLoginServlet" method="post">
 
 <label for="email">Email </label>
 <input type="text" name="email" pattern="[a-z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required> <br> <br>

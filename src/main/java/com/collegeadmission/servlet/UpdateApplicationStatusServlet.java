@@ -1,29 +1,26 @@
 package com.collegeadmission.servlet;
-//import java.io.PrintWriter;
 
 import java.io.IOException;
-
-
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.collegeadmission.impl.UserDaoImpl;
+import com.collegeadmission.impl.ApplicationStatusImpl;
+import com.collegeadmission.model.ApplicationStatus;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class UpdateApplicationStatusServlet
  */
-@WebServlet("/UserLoginServlet")
-public class UserLoginServlet extends HttpServlet {
+@WebServlet("/UpdateApplicationStatusServlet")
+public class UpdateApplicationStatusServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserLoginServlet() {
+    public UpdateApplicationStatusServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,48 +28,33 @@ public class UserLoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		//doPost(request, response);
 	}
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-//	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
-		String emailId = request.getParameter("email");
-		String Password = request.getParameter("password");
-		
-		UserDaoImpl user =new UserDaoImpl();
 		
 		try {
-			Boolean Str = user.login(emailId, Password);
-			System.out.println(Str);
-			if(Str==true)
-			{
-				response.getWriter().print("Login Suceessful");
+			String PaymentStatus= request.getParameter("paymentStatus");
+			String ApplicationStatus= request.getParameter("applicationStatus");
+			int StatusId = Integer.parseInt(request.getParameter("statusId"));
+			
+
+			ApplicationStatus ad = new ApplicationStatus(PaymentStatus,ApplicationStatus,StatusId);
+			ApplicationStatusImpl obj =new ApplicationStatusImpl();
+			
+				obj.updateApplicationStatus(ad);
 				response.sendRedirect("UserView.jsp");
-			}
-			else
-			{
-				//response.sendRedirect("UserLoginError.jsp");
-				response.getWriter().print("Login Unsuceessful");
+						
+			} catch (Exception e) {
 				
-			}
-		} 
-		
-		catch (Exception e) {
-			
-			e.printStackTrace();
-			
-		}
-		
-		
+				System.out.println(e);
+			} 
 	}
+
 }

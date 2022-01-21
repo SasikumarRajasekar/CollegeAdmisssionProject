@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.collegeadmission.daoimplementation.ApplicationDaoImpl;
+import com.collegeadmission.impl.ApplicationDaoImpl;
 import com.collegeadmission.model.ApplicationDetails;
 
 /**
  * Servlet implementation class InsertApplicationServlet
  */
-@WebServlet("/InsertApplication")
+@WebServlet("/InsertApplicationServlet")
 public class InsertApplicationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -63,6 +63,8 @@ public class InsertApplicationServlet extends HttpServlet {
 		ApplicationDaoImpl ad = new ApplicationDaoImpl();
 		ad.insertApplication(obj);
 		
+		 response.sendRedirect("ViewCourses.jsp");
+		
 		response.getWriter().print("Register Successful");
 		
 			
@@ -72,7 +74,6 @@ public class InsertApplicationServlet extends HttpServlet {
 			e.printStackTrace();
 			System.out.println(e);
 		} 
-		//ApplicationDaoImpl obj =new ApplicationDaoImpl();
 		
 		
 

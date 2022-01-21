@@ -1,22 +1,28 @@
 package com.collegeadmission.servlet;
 
 import java.io.IOException;
-//import java.io.PrintWriter;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+//import java.io.PrintWriter;
+//import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.collegeadmission.daoimplementation.UserDaoImpl;
+import com.collegeadmission.impl.UserDaoImpl;
 import com.collegeadmission.model.UserDetails;
+import com.collegeadmissionproject.exception.EmailAlreadyExistException;
 
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet("/register")
+@WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,42 +39,60 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		doPost(request,response);
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		//doPost(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
-		//doGet(request,response);
+		
+		PrintWriter out=response.getWriter();
+		HttpSession session=request.getSession();
 		String username=request.getParameter("username");
 		String email=request.getParameter("email");
 		long mobileno=Long.parseLong(request.getParameter("mobileno"));
 		String password=request.getParameter("password");
-		UserDetails user=new UserDetails(username,email,mobileno,password);
-		UserDaoImpl user1=new UserDaoImpl();
 		
-//		user=userdao.validateUser(username,email,mobileno, password);
-//		PrintWriter rw=response.getWriter();
-//		rw.write("UserName: " +username);
-//		rw.write("Email:"+email);
-//		rw.write("Mobile Number: " + mobileno);
-//		rw.write("Password:"+password);
-		try {
-			boolean flag= user1.userDetails(user);
-			if(flag)
-			{
-			response.sendRedirect("UserLogin.jsp");
-
+		UserDetails obj=new UserDetails(username,email,mobileno,password);
+		UserDaoImpl ins=new UserDaoImpl();
+		try
+		{
+			
+			ResultSet rs=ins.getEmailDetails(obj);
+			if(rs.next()){
+				System.out.println(rs.getString(3));
+				if(email.equals(rs.getString(3))) {
+					throw new EmailAlreadyExistException();
+				}
 			}
-			} catch (ClassNotFoundException | SQLException e) {
+		ins.insert(obj);
+
+		
+		   //response.getWriter().print("Register Suceessfully");
+
+		   session.setAttribute("registered","You've registered successfully");
+		   response.sendRedirect("UserLogin.jsp");
+		
+	} catch (IOException e) {
+		System.out.println(e);
+		
+	}
+		catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			}
-
-	}
-
-}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		catch (EmailAlreadyExistException e) {
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('email already exist');");
+			out.println("location='Register.jsp';");
+			out.println("</script>");
+			//res.sendRedirect("errorpage.jsp?message="+ea.getMessage()+"&url=Register.jsp");
+		} 
+		
+}}
