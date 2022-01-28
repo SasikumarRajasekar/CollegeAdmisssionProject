@@ -49,7 +49,15 @@ Tuition_Fees int);
 
 select * from courses_details;
 
-
+create table application_status(Status_Id int generated always as identity start with 1 primary key,
+User_Id int,
+foreign key(User_Id) references user_details(User_Id),
+application_id int,
+foreign key(application_id) references application_details(application_id),
+Course_Id int,
+foreign key(Course_Id) references courses_details(Course_Id),
+payment_status varchar2(20),
+application_status varchar2(20));
 
 desc application_details;
 
@@ -58,7 +66,7 @@ insert into application_details(user_id,Student_Name,Father_Name,Date_of_Birth,A
 
 select * from application_details;
 drop table courses_details;
-select (admission_fees+tuition_fees+exam_fees)*.75 from fees_list where course_id=100;
+
 select * from application_details;
 select * from user_details;
 commit;

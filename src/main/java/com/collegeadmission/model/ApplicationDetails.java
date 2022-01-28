@@ -13,7 +13,6 @@ public class ApplicationDetails {
     private long aadharNumber;
     private int sslcMark;
     private int hscMark;
-    private String firstGraduate;
     private String address;
     private String city;
     private int pincode;
@@ -67,12 +66,6 @@ public class ApplicationDetails {
 	public void setHscMark(int hscMark) {
 		this.hscMark = hscMark;
 	}
-	public  String getFirstGraduate() {
-		return firstGraduate;
-	}
-	public void setFirstGraduate(String firstGraduate) {
-		this.firstGraduate = firstGraduate;
-	}
 	public String getAddress() {
 		return address;
 	}
@@ -105,7 +98,7 @@ public class ApplicationDetails {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(DateofBirth, aadharNumber, address, applicationId, city, fatherName, firstGraduate, hscMark,
+		return Objects.hash(DateofBirth, aadharNumber, address, applicationId, city, fatherName, hscMark,
 				nationality, pincode, sslcMark, studentName, userId, userState);
 	}
 	@Override
@@ -120,7 +113,7 @@ public class ApplicationDetails {
 		return Objects.equals(DateofBirth, other.DateofBirth) && aadharNumber == other.aadharNumber
 				&& Objects.equals(address, other.address) && applicationId == other.applicationId
 				&& Objects.equals(city, other.city) && Objects.equals(fatherName, other.fatherName)
-				&& firstGraduate == other.firstGraduate && hscMark == other.hscMark
+				&& hscMark == other.hscMark
 				&& Objects.equals(nationality, other.nationality) && pincode == other.pincode
 				&& sslcMark == other.sslcMark && Objects.equals(studentName, other.studentName)
 				&& userId == other.userId && Objects.equals(userState, other.userState);
@@ -129,12 +122,12 @@ public class ApplicationDetails {
 	public String toString() {
 		return "ApplicationDetails [applicationId=" + applicationId + ", userId=" + userId + ", studentName="
 				+ studentName + ", fatherName=" + fatherName + ", DateofBirth=" + DateofBirth + ", aadharNumber="
-				+ aadharNumber + ", sslcMark=" + sslcMark + ", hscMark=" + hscMark + ", firstGraduate=" + firstGraduate
+				+ aadharNumber + ", sslcMark=" + sslcMark + ", hscMark=" + hscMark 
 				+ ", address=" + address + ", city=" + city + ", pincode=" + pincode + ", userState=" + userState
 				+ ", nationality=" + nationality + "]";
 	}
 	public ApplicationDetails(int applicationId, int userId, String studentName, String fatherName, Date dateofBirth,
-			int aadharNumber, int sslcMark, int hscMark, String firstGraduate, String address, String city, int pincode,
+			int aadharNumber, int sslcMark, int hscMark, String address, String city, int pincode,
 			String userState, String nationality) {
 		super();
 		this.applicationId = applicationId;
@@ -145,7 +138,6 @@ public class ApplicationDetails {
 		this.aadharNumber = aadharNumber;
 		this.sslcMark = sslcMark;
 		this.hscMark = hscMark;
-		this.firstGraduate = firstGraduate;
 		this.address = address;
 		this.city = city;
 		this.pincode = pincode;
@@ -180,21 +172,14 @@ public class ApplicationDetails {
 
 	}
 
-	public ApplicationDetails(String studentName, String fatherName, Date dateofBirth,
-			int sslcMark, int hscMark, String address, String city,
-			int pincode, String userState, String nationality,int applicationId) {
+	public ApplicationDetails(String address, String city,
+			int pincode, String userState, int applicationId) {
 		// TODO Auto-generated constructor stub
 		
-		this.studentName = studentName;
-		this.fatherName = fatherName;
-		this.DateofBirth = dateofBirth;
-		this.sslcMark = sslcMark;
-		this.hscMark = hscMark;
 		this.address = address;
 		this.city = city;
 		this.pincode = pincode;
 		this.userState = userState;
-		this.nationality = nationality;
 		this.applicationId = applicationId;
 
 	}

@@ -69,17 +69,11 @@ public class ApplicationDaoImpl  {
     	Connection con=ConnectionUtil.getDBConnect();
 		PreparedStatement pstmt=con.prepareStatement(updateApplication);
 		
-		pstmt.setString(1,applicationdetail.getStudentName());
-		pstmt.setString(2,applicationdetail.getFatherName());
-		pstmt.setDate(3, new java.sql.Date(applicationdetail.getDateofBirth().getTime()));
-		pstmt.setInt(4,applicationdetail.getSslcMark());
-		pstmt.setInt(5,applicationdetail.getHscMark());
-		pstmt.setString(6,applicationdetail.getAddress());
-		pstmt.setString(7,applicationdetail.getCity());
-		pstmt.setInt(8,applicationdetail.getPincode());
-		pstmt.setString(9,applicationdetail.getUserState());
-		pstmt.setString(10,applicationdetail.getNationality());
-		pstmt.setInt(11, applicationdetail.getApplicationId());
+		pstmt.setString(1,applicationdetail.getAddress());
+		pstmt.setString(2,applicationdetail.getCity());
+		pstmt.setInt(3,applicationdetail.getPincode());
+		pstmt.setString(4,applicationdetail.getUserState());
+		pstmt.setInt(5, applicationdetail.getApplicationId());
 		
 		int result=pstmt.executeUpdate();
 		System.out.println(result+ " is updated !!");
@@ -134,7 +128,7 @@ public class ApplicationDaoImpl  {
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{
-				ApplicationDetails applicationdetails =new ApplicationDetails(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13),rs.getString(14));
+				ApplicationDetails applicationdetails =new ApplicationDetails(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getInt(11),rs.getString(12),rs.getString(13));
 				applicationList.add(applicationdetails);
 			}
 		} catch (SQLException e) {
@@ -145,5 +139,11 @@ public class ApplicationDaoImpl  {
 
 
     }
+//	public int findAppId(int userID)
+//	{
+//		String query="select appId from application_status where user_id="+userID;
+//		
+//		
+//	}
 
 }

@@ -45,10 +45,10 @@ public class UpdateApplicationStatusServlet extends HttpServlet {
 			int StatusId = Integer.parseInt(request.getParameter("statusId"));
 			
 
-			ApplicationStatus ad = new ApplicationStatus(PaymentStatus,ApplicationStatus,StatusId);
+			//ApplicationStatus ad = new ApplicationStatus(PaymentStatus,ApplicationStatus,StatusId);
 			ApplicationStatusImpl obj =new ApplicationStatusImpl();
 			
-				obj.updateApplicationStatus(ad);
+				//obj.updateApplicationStatus(ad);
 				response.sendRedirect("UserView.jsp");
 						
 			} catch (Exception e) {

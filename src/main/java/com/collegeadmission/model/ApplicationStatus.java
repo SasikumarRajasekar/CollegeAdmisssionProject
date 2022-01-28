@@ -4,18 +4,12 @@ import java.util.Objects;
 
 public class ApplicationStatus {
 	
-	private int statusId;
 	private int userId;
 	private int applicationId;
 	private int courseId;
 	private String paymentStatus;
 	private String applicationStatus;
-	public int getStatusId() {
-		return statusId;
-	}
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
-	}
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -48,7 +42,7 @@ public class ApplicationStatus {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(applicationId, applicationStatus, courseId, paymentStatus, statusId, userId);
+		return Objects.hash(applicationId, applicationStatus, courseId, paymentStatus, userId);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -61,18 +55,18 @@ public class ApplicationStatus {
 		ApplicationStatus other = (ApplicationStatus) obj;
 		return applicationId == other.applicationId && Objects.equals(applicationStatus, other.applicationStatus)
 				&& courseId == other.courseId && Objects.equals(paymentStatus, other.paymentStatus)
-				&& statusId == other.statusId && userId == other.userId;
+				 && userId == other.userId;
 	}
 	@Override
 	public String toString() {
-		return "ApplicationStatus [statusId=" + statusId + ", userId=" + userId + ", applicationId="
+		return "ApplicationStatus [ userId=" + userId + ", applicationId="
 				+ applicationId + ", courseId=" + courseId + ", paymentStatus=" + paymentStatus + ", applicationStatus="
 				+ applicationStatus + "]";
 	}
-	public ApplicationStatus(int statusId, int userId, int applicationId, int courseId, String paymentStatus,
+	public ApplicationStatus( int userId, int applicationId, int courseId, String paymentStatus,
 			String applicationStatus) {
 		super();
-		this.statusId = statusId;
+		
 		this.userId = userId;
 		this.applicationId = applicationId;
 		this.courseId = courseId;
@@ -83,14 +77,7 @@ public class ApplicationStatus {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ApplicationStatus(String paymentStatus, String applicationStatus, int statusId) {
-		// TODO Auto-generated constructor stub
-		
-		this.paymentStatus = paymentStatus;
-		this.applicationStatus = applicationStatus;
-		this.statusId = statusId;
-		
-	}
+
 	
 	
 

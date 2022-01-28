@@ -41,6 +41,7 @@ for(CourseDetails list : courseList) {
 <td> <%=list.getCourseName()%></td>	
 <td><%=list.getAdmissionFees() %></td>	
 <td><%=list.getTuitionFees()%></td>	
+<td><a href="InsertApplicationStatusServlet?courseid=<%=list.getCourseId()%>">Apply</a></td>
 </tr>
 <%
 }

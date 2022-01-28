@@ -9,14 +9,6 @@
 <body>
 
 <form action="UpdateApplicationServlet" method= "post">
-<label>Enter the- student name</label>
-<input type="text" name="studName" required>
-<label>Enter the Father Name</label>
-<input type="text" name="fatName" required>
-<label>Enter the sslc mark </label>
-<input type="text" name="sslcMark" required>
-<label>Enter the hsc Mark</label>
-<input type="text" name="hscMark" required>
 <label>Enter the address</label>
 <input type="text" name="addrss" required>
 <label>Enter the city</label>
@@ -26,8 +18,6 @@
 <label>Enter the state</label>
 <input type="text" name="State" required>
 <label>Enter the nationality</label>
-<input type="text" name="nationality" required>
-<label>Enter the application id</label>
 <input type="text" name="applicationId" required>
 
 

@@ -56,7 +56,7 @@ public class AdminLoginServlet extends HttpServlet {
 				
 				response.getWriter().print("Login Suceessful");
 				
-			    //response.sendRedirect("AdminView.jsp");
+			    response.sendRedirect("AdminView.jsp");
 			   			    
 			}
 			else

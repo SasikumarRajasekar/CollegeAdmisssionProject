@@ -9,7 +9,6 @@ import java.util.List;
 
 import com.collegeadmission.connection.ConnectionUtil;
 import com.collegeadmission.model.CourseDetails;
-import com.collegeadmission.model.UserDetails;
 
 public class CoursesDaoImpl {
 	
@@ -35,16 +34,15 @@ public class CoursesDaoImpl {
 	
 	public void updateCourses (CourseDetails coursedetails) throws ClassNotFoundException, SQLException {
     	
-    	String update="update courses_details set course_type=?, course_name=?, admission_fees=?, tuition_fees=? where course_id=?";
+    	String update="update courses_details set admission_fees=?, tuition_fees=? where course_id=?";
     	
     	Connection con=ConnectionUtil.getDBConnect();
 		PreparedStatement ps=con.prepareStatement(update);
 		
-		ps.setString(1,coursedetails.getCourseType());
-		ps.setString(2,coursedetails.getCourseName());
-		ps.setInt(3, coursedetails.getAdmissionFees());
-		ps.setInt(4, coursedetails.getTuitionFees());
-		ps.setInt(5, coursedetails.getCourseId());
+		
+		ps.setInt(1, coursedetails.getAdmissionFees());
+		ps.setInt(2, coursedetails.getTuitionFees());
+		ps.setInt(3, coursedetails.getCourseId());
 		
 		
 		int result=ps.executeUpdate();

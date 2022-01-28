@@ -12,18 +12,22 @@ import com.collegeadmission.model.ApplicationStatus;
 
 public class ApplicationStatusImpl {
 	
-public void applicationStatus(ApplicationStatus as) throws ClassNotFoundException, SQLException {
+public void applicationStatus(ApplicationStatus appStatus) throws ClassNotFoundException, SQLException {
 		
 		Connection con= ConnectionUtil.getDBConnect();
-		String query = " insert into application_status(status_id,user_id,applicantion_id,course_id,payment_status,application_status)values(?,?,?)";
+		String query = " insert into application_status(user_id,application_id,course_id,payment_status,application_status)values(?,?,?,?,?)";
 		
 		PreparedStatement stmt= con.prepareStatement(query);
-		stmt.setInt(1, as.getStatusId());
-		stmt.setInt(2, as.getUserId());
-		stmt.setInt(3, as.getApplicationId());
-		stmt.setInt(4, as.getCourseId());
-		stmt.setString(5, as.getPaymentStatus());
-		stmt.setString(6, as.getApplicationStatus());
+
+		stmt.setInt(1, appStatus.getUserId());
+		System.out.println(appStatus.getUserId());
+		//int appID=applicationdetailsdao.findAppID(appStatus.getUserId());
+		//stmt.setInt(2, appID);
+		//System.out.println(appID);
+		stmt.setInt(3, appStatus.getCourseId());
+		System.out.println(appStatus.getCourseId());
+		stmt.setString(4, appStatus.getPaymentStatus());
+		stmt.setString(5, appStatus.getApplicationStatus());
 		
 		stmt.executeUpdate();
 		System.out.println("Insert Applicant Status Successfully");
@@ -40,7 +44,7 @@ public void updateApplicationStatus(ApplicationStatus as1)throws ClassNotFoundEx
 	 	
 	stmt.setString(1, as1.getPaymentStatus());
 	stmt.setString(2, as1.getApplicationStatus());
-	stmt.setInt(3, as1.getStatusId());
+	//-stmt.setInt(3, as1.getStatusId());
 	
 		System.out.println(stmt.executeUpdate() + " is updated !!");
 	 
@@ -61,9 +65,9 @@ public List<ApplicationStatus> showAppStatus() throws ClassNotFoundException, SQ
 	
 	 while(rs.next())
 	 {
-		 appStatus= new ApplicationStatus(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6));
+		 //appStatus= new ApplicationStatus(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6));
 	
-		 show.add(appStatus);
+		 //show.add(appStatus);
 	
 	  }
 

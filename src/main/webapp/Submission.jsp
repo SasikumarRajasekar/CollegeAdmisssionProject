@@ -9,6 +9,7 @@
 <body>
 
 <h1>Thank you for selecting the course</h1>
-
+<%String courseid=request.getParameter("courseid"); %>
+<p><%= courseid %></p>
 </body>
 </html>

@@ -77,14 +77,22 @@ public class CourseDetails {
 		// TODO Auto-generated constructor stub
 		this.courseId=courseId;
 	}
-	public CourseDetails(String courseType, String courseName, int admissionFees, int tuitionFees, int courseId) {
+//	public CourseDetails(String courseType, String courseName, int admissionFees, int tuitionFees, int courseId) {
+//		// TODO Auto-generated constructor stub
+//		
+//		this.courseType = courseType;
+//		this.courseName = courseName;
+//		this.admissionFees = admissionFees;
+//		this.tuitionFees = tuitionFees;
+//		this.courseId = courseId;
+//	}
+	public CourseDetails(int admissionFees, int tuitionFees, int courseId) {
 		// TODO Auto-generated constructor stub
 		
-		this.courseType = courseType;
-		this.courseName = courseName;
 		this.admissionFees = admissionFees;
 		this.tuitionFees = tuitionFees;
 		this.courseId = courseId;
+		
 	}
 
 	

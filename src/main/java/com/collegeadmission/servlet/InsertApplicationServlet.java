@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.collegeadmission.impl.ApplicationDaoImpl;
 import com.collegeadmission.model.ApplicationDetails;
@@ -62,7 +63,8 @@ public class InsertApplicationServlet extends HttpServlet {
 		ApplicationDetails obj = new ApplicationDetails(UserId,StudentName,FatherName,dt,AadharNumber,SslcMark,HscMark,Address,City,Pincode,UserState,Nationality);
 		ApplicationDaoImpl ad = new ApplicationDaoImpl();
 		ad.insertApplication(obj);
-		
+		HttpSession session=request.getSession();
+		session.setAttribute("application", obj);
 		 response.sendRedirect("ViewCourses.jsp");
 		
 		response.getWriter().print("Register Successful");

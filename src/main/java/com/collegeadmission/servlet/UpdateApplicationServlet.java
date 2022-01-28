@@ -1,11 +1,11 @@
 package com.collegeadmission.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
+//import java.io.PrintWriter;
+//import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+//import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,19 +43,15 @@ public class UpdateApplicationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		try {
-		String studentName= request.getParameter("studentName");
-		String fatherName= request.getParameter("fatherName");
-		int sslcMark= Integer.parseInt(request.getParameter("sslcMark"));
-		int hscMark= Integer.parseInt(request.getParameter("hscMark"));
+		
 		String address= request.getParameter("address");
 		String city= request.getParameter("city");
 		int pincode = Integer.parseInt(request.getParameter("pincode"));
 		String userState= request.getParameter("State");
-		String nationality= request.getParameter("nationality");
 		int applicationId = Integer.parseInt(request.getParameter("applicationId"));
 		
 
-		ApplicationDetails ad = new ApplicationDetails(studentName,fatherName,sslcMark,hscMark,address,city,pincode,userState,nationality,applicationId);
+		ApplicationDetails ad = new ApplicationDetails(address,city,pincode,userState,applicationId);
 		ApplicationDaoImpl obj =new ApplicationDaoImpl();
 		
 			obj.updateApplication(ad);

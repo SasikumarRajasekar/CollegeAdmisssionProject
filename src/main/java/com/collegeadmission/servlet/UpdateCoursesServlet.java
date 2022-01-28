@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.collegeadmission.impl.ApplicationDaoImpl;
-import com.collegeadmission.model.ApplicationDetails;
+import com.collegeadmission.impl.CoursesDaoImpl;
+import com.collegeadmission.model.CourseDetails;
 
 /**
  * Servlet implementation class UpdateCoursesServlet
@@ -40,22 +40,16 @@ public class UpdateCoursesServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		try {
-			String studentName= request.getParameter("studentName");
-			String fatherName= request.getParameter("fatherName");
-			int sslcMark= Integer.parseInt(request.getParameter("sslcMark"));
-			int hscMark= Integer.parseInt(request.getParameter("hscMark"));
-			String address= request.getParameter("address");
-			String city= request.getParameter("city");
-			int pincode = Integer.parseInt(request.getParameter("pincode"));
-			String userState= request.getParameter("State");
-			String nationality= request.getParameter("nationality");
-			int applicationId = Integer.parseInt(request.getParameter("applicationId"));
+			
+			int AdmissionFees= Integer.parseInt(request.getParameter("admissionFees"));
+			int TuitionFees= Integer.parseInt(request.getParameter("tuitionFees"));
+			int CourseId = Integer.parseInt(request.getParameter("courseId"));
 			
 
-			ApplicationDetails ad = new ApplicationDetails(studentName,fatherName,sslcMark,hscMark,address,city,pincode,userState,nationality,applicationId);
-			ApplicationDaoImpl obj =new ApplicationDaoImpl();
+			CourseDetails ad = new CourseDetails(AdmissionFees,TuitionFees,CourseId);
+			CoursesDaoImpl obj =new CoursesDaoImpl();
 			
-				obj.updateApplication(ad);
+				obj.updateCourses(ad);
 				response.sendRedirect("UserView.jsp");
 						
 			} catch (Exception e) {
